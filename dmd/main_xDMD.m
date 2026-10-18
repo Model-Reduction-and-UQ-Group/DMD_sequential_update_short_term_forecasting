@@ -85,9 +85,11 @@ rDMD_en=rvec_en(2);
 
 %% representation & extrapolation
 u_real=GR; 
+u_rec=GR;
+u_rec(:,months_NaN)=NaN;
 for trunc_type=2
 % repr and extr
-    [u_dmd, u_real]=xDMD_reprinterp(N,Train,u_real,rDMD_en);  
+    [u_dmd, ~]=xDMD_reprinterp(N,Train,u_rec,rDMD_en);  
     save(sprintf('%s/xDMD_%s_trunc%d_udmd_%d.mat',folderout,'RE',trunc_type,M),'u_dmd','-nocompression')
     save(sprintf('%s/xDMD_%s_trunc%d_ureal_%d.mat',folderout,'RE',trunc_type,M),'u_real','-nocompression')
 % error
