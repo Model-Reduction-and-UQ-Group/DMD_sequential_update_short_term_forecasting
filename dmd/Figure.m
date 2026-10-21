@@ -8,7 +8,6 @@ clc
 
 M          = 283;
 type_trunc = 2;
-folder     = sprintf('../2_codici');
 
 listbasinnames    = {'Amazon','Colorado','Danube','Ganges_Bramaputra','LaPlata',...
                 'Mississippi_Missouri','Murray_Darling','Niger','Nile','Po',...
@@ -112,11 +111,11 @@ for ln = 1:nBasins
     load(sprintf('data/%s/GRACE_lat.mat',scale));
       
     %% load times
-    name   = 'coppieTrain2';
+    name   = 'pairsTrain2';
     T_repr = load(sprintf('%s/%s/GRACE_time_%d.mat',  dmd, scale, M), name);
     t_repr = cell2mat(struct2cell(T_repr));
 
-    name   = 'mesi_NaN';
+    name   = 'months_NaN';
     T_extr = load(sprintf('%s/%s/GRACE_time_%d.mat',  dmd, scale, M), name);
     t_extr = cell2mat(struct2cell(T_extr));
     t_extr = t_extr(34:end);
