@@ -7,7 +7,7 @@ clc
 %% set parameters
 
 retr=12;
-case_root = fullfile(pwd, sprintf("../2_codici/LSTM_GRU/MeanBasin_rec%d",retr));
+case_root = fullfile(pwd, sprintf("LSTM_GRU/MeanBasin_rec%d",retr));
 
 listanomi=[{'Amazon'},{'Colorado'},{'Danube'},{'Ganges_Bramaputra'},{'LaPlata'},{'Mississippi_Missouri'},{'Murray_Darling'},{'Niger'},{'Nile'},{'Po'},{'Tigris_Euphrates'},{'Volga'},{'Yangtze'},{'Yenisey'},{'Zambesi'}];
 listalegenda=[{'Amazon'},{'Colorado'},{'Danube'},{'Ganges-Bramaputra'},{'La Plata'},{'Mississippi-Missouri'},{'Murray-Darling'},{'Niger'},{'Nile'},{'Po'},{'Tigris-Euphrates'},{'Volga'},{'Yangtze'},{'Yenisey'},{'Zambesi'}];
@@ -16,8 +16,8 @@ listalegenda=[{'Amazon'},{'Colorado'},{'Danube'},{'Ganges-Bramaputra'},{'La Plat
 
 M          = 283;
 type_trunc = 2;
-folder     = sprintf('C:/Users/giulia.libero2/OneDrive - Alma Mater Studiorum Università di Bologna/Giulia-Alessia/Giulia/6_GRACE/12_DMD_sequp/2_codici');
-dmdtipi    = {sprintf('xDMD_r/rec%d_onesto',retr)};
+folder     = sprintf('../dmd');
+dmdtipi    = {sprintf('xDMD_up%d',retr)};
 casi       = {'1_global'};
 cs   = 1;
 dmd  = string(dmdtipi(cs));
@@ -25,15 +25,15 @@ caso = string(casi(cs));
 
 dmd_global_available = true;
 try
-    load(sprintf('../1_dati/GRACE/posLand.mat'));
-    load(sprintf('../1_dati/GRACE/GRACE_lonEU.mat'));
-    load(sprintf('../1_dati/GRACE/GRACE_lat.mat'));
+    load(sprintf('../dmd/data/%s/posLand.mat',caso));
+    load(sprintf('../dmd/data/%s/GRACE_lonEU.mat',caso));
+    load(sprintf('../dmd/data/%s/GRACE_lat.mat',caso));
 
-    name   = 'coppieTrain2';
+    name   = 'pairsTrain2';
     T_repr = load(sprintf('%s/%s/%s/GRACE_time_%d.mat', folder, dmd, caso, M), name);
     t_repr = cell2mat(struct2cell(T_repr));
 
-    name   = 'mesi_NaN';
+    name   = 'months_NaN';
     T_extr = load(sprintf('%s/%s/%s/GRACE_time_%d.mat', folder, dmd, caso, M), name);
     t_extr = cell2mat(struct2cell(T_extr));
     t_extr = t_extr(34:end);
@@ -147,7 +147,7 @@ for ln=1:15
     dmd_available = false;
     if dmd_global_available
         try
-            AreaBoundary = sprintf('../1_dati/basins_borders/%s.shp', basin);
+            AreaBoundary = sprintf('../dmd/data/2_basins/basins_borders/%s.shp', basin);
             area = shaperead(AreaBoundary);
 
             rx = area.X(1, 1:end-1);

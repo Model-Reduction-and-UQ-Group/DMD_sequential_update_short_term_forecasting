@@ -27,7 +27,7 @@ from scipy.io import savemat
 # ====================================
 TRAINVAL = 241   # months 0..240 = train+val, test starts at 241
 X_STEP = 12      # MODIFICA: retraining step ora a 12 mesi (era 6)
-basin = "Zambesi"
+basin = "Amazon"
 
 
 # ====================================
@@ -237,11 +237,11 @@ def save_npy_and_mat(base_path, var_name, array):
 # ======================================================================
 # data: pixel map + instants -> UNICA serie media del bacino
 # ======================================================================
-pixel_map = np.load("grace/1_dati/GRACE_basins/" + basin + "_pixels_time.npy")   # (P, T)
-instants_full = np.load("grace/1_dati/GRACE_basins/instants.npy")                                                  # (T,)
+pixel_map = np.load("data/2_basins/" + basin + "_pixels_time.npy")   # (P, T)
+instants_full = np.load("data/2_basins/instants.npy")                                                  # (T,)
 
 current_directory = os.getcwd()
-case_dir = current_directory + "/grace/2_codici/LSTM_GRU/MeanBasin_rec"+str(X_STEP)+"/" + basin + "/"
+case_dir = current_directory + "/LSTM_GRU/MeanBasin_rec"+str(X_STEP)+"/" + basin + "/"
 os.makedirs(case_dir, exist_ok=True)
 save_models_to = case_dir + "model/"
 os.makedirs(save_models_to, exist_ok=True)
