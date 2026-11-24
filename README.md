@@ -10,3 +10,5 @@ The LSTM–GRU implementation used as a benchmark in this study is based on the 
 # Citation
 If you use this repository in your research, please cite:
 Ciriello, V., Libero, G., & Tartakovsky, D. M. (2026). Short-term forecasting from GRACE data via dynamic mode decomposition with sequential update. Journal of Hydrology, 681, 136674. https://doi.org/10.1016/j.jhydrol.2026.136674
+
+DOI of software version v1.0 https://doi.org/10.5281/zenodo.24497068
